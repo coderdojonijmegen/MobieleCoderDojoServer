@@ -23,6 +23,43 @@ Om de client te verbinden en het accesspoint op te zetten, moeten een aantal com
  2. Beschikbare netwerken bekijken: `nmcli device wifi`
  3. Client verbinden: `nmcli device wifi connect "<ssid publieke wifi>"` indien er een WPA2 beveiliging gebruikt wordt, is het commando `nmcli device wifi connect "<ssid wpa2 wifi>" password "<wpa2 wachtwoord>"`
 
+### Dagelijks gebruik
+Met `sudo make install` wordt `create_ap` zo geïnstalleerd dat het als service kan draaien. Aangezien het accesspoint actief moet zijn, voordat de client aan een (publiek) wifi netwerk wordt gekoppeld, is het handig om de service aan te zetten.
+Met behulp van een configuratie bestand, kun de `create_ap` service worden ingesteld. Deze is na installatie hier te vinden: `/etc/create_ap.conf`. We passen de inhoud aan zodat het er als volgt uit ziet:
+```
+## Standaard instellingen:
+CHANNEL=default
+GATEWAY=10.0.0.1
+WPA_VERSION=2
+ETC_HOSTS=0
+DHCP_DNS=gateway
+NO_DNS=0
+NO_DNSMASQ=0
+HIDDEN=0
+MAC_FILTER=0
+MAC_FILTER_ACCEPT=/etc/hostapd/hostapd.accept
+ISOLATE_CLIENTS=0
+SHARE_METHOD=nat
+IEEE80211N=0
+IEEE80211AC=0
+HT_CAPAB=[HT40+]
+VHT_CAPAB=
+DRIVER=nl80211
+NO_VIRT=0
+FREQ_BAND=2.4
+NEW_MACADDR=
+DAEMONIZE=0
+NO_HAVEGED=0
+USE_PSK=0
+
+## Aangepast voor onze CoderDojoServer:
+COUNTRY=NL
+WIFI_IFACE=wlp0s20f3
+INTERNET_IFACE=wlp0s20f3
+SSID=CoderDojoServer
+PASSPHRASE=4Ninjas!
+```
+
 ## Firewall
 Omdat de MCS aan publieke netwerken hangt, gebruiken we een firewall om ongeauthorizeerd inkomend verkeer zoveel mogelijk te blokkeren.
 De applicaties die we toelaten zijn:
