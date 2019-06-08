@@ -20,4 +20,4 @@ Het tooltje is nu gereed voor gebruik.
 Om de client te verbinden en het accesspoint op te zetten, moeten een aantal commando's worden uitgevoerd. Hierbij is de volgorde van belang gebleken:
 
  1. Accesspoint opzetten: _sudo ./create_ap wlp0s20f3 wlp0s20f3 CoderDojoServer dojo2018_ (create_ap &lt;client> &lt;ap> &lt;ssid> &lt;netwerk wachtwoord>)
- 2. Client verbinden: _nmcli device wifi connect "%lt;ssid publieke wifi>"_ indien er een WPA2 beveiliging gebruikt wordt, is het commando _nmcli device wifi connect "%lt;ssid wpa2 wifi>" password "%lt;wpa2 wachtwoord>"_
+ 2. Client verbinden: _nmcli device wifi connect "&lt;ssid publieke wifi>"_ indien er een WPA2 beveiliging gebruikt wordt, is het commando _nmcli device wifi connect "&lt;ssid wpa2 wifi>" password "&lt;wpa2 wachtwoord>"_
