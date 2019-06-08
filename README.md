@@ -74,8 +74,6 @@ Voor de eenvoud en omdat het access point alleen IPv4 ondersteund, blokkeren we 
 ```
 To                         Action      From
 --                         ------      ----
-To                         Action      From
---                         ------      ----
 22/tcp on eno1             ALLOW IN    Anywhere (extern, bedrade netwerk)
 22/tcp on ap0              ALLOW IN    Anywhere (interne netwerk aan accesspoint)
 80/tcp on ap0              ALLOW IN    Anywhere (interne netwerk aan accesspoint)
