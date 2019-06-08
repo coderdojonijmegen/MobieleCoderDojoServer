@@ -60,6 +60,8 @@ SSID=CoderDojoServer
 PASSPHRASE=4Ninjas!
 ```
 
+Na het aanpassen van de configuratie zet je de service aan: `sudo systemctl enable create_ap` en start je het `sudo systemctl start create_ap`. Met behulp van `sudo systemctl status create_ap` kun je zien of de service succesvol is opgestart.
+
 ## Firewall
 Omdat de MCS aan publieke netwerken hangt, gebruiken we een firewall om ongeauthorizeerd inkomend verkeer zoveel mogelijk te blokkeren.
 De applicaties die we toelaten zijn:
