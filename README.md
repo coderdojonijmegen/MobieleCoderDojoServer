@@ -10,18 +10,18 @@ Om dit eenvoudig te kunnen realiseren, kan [create_ap](https://github.com/obliqu
 configureert de WIFI adapter en de software routering om de client met het accesspoint te verbinden.
 Om het tooltje te kunnen gebruiken, moet je de volgende stappen uitvoeren:
 
- * _sudo apt install git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essentials_
- * _git clone https://github.com/oblique/create_ap_
- * _cd create_ap_
- * _sudo make install_
+ * `sudo apt install git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essentials`
+ * `git clone https://github.com/oblique/create_ap`
+ * `cd create_ap`
+ * `sudo make install`
 
 Het tooltje is nu gereed voor gebruik.
 ### Verbinden
 Om de client te verbinden en het accesspoint op te zetten, moeten een aantal commando's worden uitgevoerd. Hierbij is de volgorde van belang gebleken:
 
- 1. Accesspoint opzetten: _sudo ./create_ap wlp0s20f3 wlp0s20f3 CoderDojoServer dojo2018_ (create_ap &lt;client> &lt;ap> &lt;ssid> &lt;netwerk wachtwoord>)
- 2. Beschikbare netwerken bekijken: _nmcli device wifi_
- 3. Client verbinden: _nmcli device wifi connect "&lt;ssid publieke wifi>"_ indien er een WPA2 beveiliging gebruikt wordt, is het commando _nmcli device wifi connect "&lt;ssid wpa2 wifi>" password "&lt;wpa2 wachtwoord>"_
+ 1. Accesspoint opzetten: `sudo ./create_ap wlp0s20f3 wlp0s20f3 CoderDojoServer dojo2018` (create_ap &lt;client> &lt;ap> &lt;ssid> &lt;netwerk wachtwoord>)
+ 2. Beschikbare netwerken bekijken: `nmcli device wifi`
+ 3. Client verbinden: `nmcli device wifi connect "&lt;ssid publieke wifi>"` indien er een WPA2 beveiliging gebruikt wordt, is het commando `nmcli device wifi connect "&lt;ssid wpa2 wifi>" password "&lt;wpa2 wachtwoord>"`
 
 ## Firewall
 Omdat de MCS aan publieke netwerken hangt, gebruiken we een firewall om ongeauthorizeerd inkomend verkeer zoveel mogelijk te blokkeren.
