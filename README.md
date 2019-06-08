@@ -21,7 +21,7 @@ Om de client te verbinden en het accesspoint op te zetten, moeten een aantal com
 
  1. Accesspoint opzetten: `sudo ./create_ap wlp0s20f3 wlp0s20f3 CoderDojoServer dojo2018` (create_ap &lt;client> &lt;ap> &lt;ssid> &lt;netwerk wachtwoord>)
  2. Beschikbare netwerken bekijken: `nmcli device wifi`
- 3. Client verbinden: `nmcli device wifi connect "&lt;ssid publieke wifi>"` indien er een WPA2 beveiliging gebruikt wordt, is het commando `nmcli device wifi connect "&lt;ssid wpa2 wifi>" password "&lt;wpa2 wachtwoord>"`
+ 3. Client verbinden: `nmcli device wifi connect "<ssid publieke wifi>"` indien er een WPA2 beveiliging gebruikt wordt, is het commando `nmcli device wifi connect "<ssid wpa2 wifi>" password "<wpa2 wachtwoord>"`
 
 ## Firewall
 Omdat de MCS aan publieke netwerken hangt, gebruiken we een firewall om ongeauthorizeerd inkomend verkeer zoveel mogelijk te blokkeren.
