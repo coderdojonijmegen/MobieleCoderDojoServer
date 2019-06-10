@@ -17,4 +17,4 @@ EXPOSE 29418
 
 ENV MAX_FILE_SIZE=3145728
 
-CMD ["sh", "-c", "java -jar /opt/gitbucket.war --max_file_size=$MAX_FILE_SIZE --prefix=$PREFIX"]
+CMD ["sh", "-c", "java -jar /opt/gitbucket.war --max_file_size=$MAX_FILE_SIZE --prefix=/$PREFIX"]
