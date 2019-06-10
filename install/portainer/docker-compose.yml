@@ -1,13 +1,13 @@
 version: '3.3'
 
 services:
-   gitbucket:
-     build: .
+   portainer:
+     image: portainer/portainer:latest
      volumes:
-       - data:/gitbucket
+       - data:/data
+       - /var/run/docker.sock:/var/run/docker.sock
      ports:
-       - "8080:8080"
-       - "29418:29418"
+       - "9000:9000"
      restart: always
      environment:
        GIT_BUCKET_VERSION: 4.31.2

@@ -19,6 +19,7 @@ install_dependencies() {
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" &&
 	apt update &&
 	apt install -y docker-ce &&
+	pip3 install docker-compose &&
 	return 0
 }
 
@@ -47,10 +48,9 @@ configure_firewall() {
 }
 
 install_portainer() {
-	docker volume create portainer_data &&
-	docker stop portainer || docker rm portainer ||
-	docker run -d -p 9000:9000 --name portainer --restart always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer &&
-	pip3 install docker-compose &&
+	pushd install/portainer &&
+		docker-compose up -d &&
+	popd &&
 	return 0
 }
 
@@ -87,8 +87,8 @@ configure_apache() {
 #install_dependencies &&
 #install_accesspoint &&
 #configure_firewall &&
-#install_portainer &&
 #install_cockpit &&
+install_portainer &&
 install_wordpress &&
 install_gitbucket &&
 configure_apache
