@@ -56,6 +56,7 @@ install_portainer() {
 
 install_cockpit() {
 	apt install -y cockpit &&
+	cp install/cockpit.conf /etc/cockpit/cockpit.conf &&
 	systemctl enable cockpit.socket &&
 	return 0
 }
@@ -83,12 +84,13 @@ configure_apache() {
 	return 0
 }
 
-#update_os &&
-#install_dependencies &&
-#install_accesspoint &&
-#configure_firewall &&
-#install_cockpit &&
+update_os &&
+install_dependencies &&
+configure_firewall &&
+install_accesspoint &&
+install_cockpit &&
 install_portainer &&
 install_wordpress &&
 install_gitbucket &&
 configure_apache
+ech "\n\n====================\nKlaar! Zie https://github.com/coderdojonijmegen/MobieleCoderDojoServer voor instructies om Portainer, WordPress en GitBucket te configureren.\n====================\n\n"
