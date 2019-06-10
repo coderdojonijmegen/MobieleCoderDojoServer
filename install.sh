@@ -14,7 +14,9 @@ update_os() {
 }
 
 install_dependencies() {
-	apt install -y apt-transport-https ca-certificates curl software-properties-common git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essential python3 python3-pip openssh-server apache2 php libapache2-mod-php &&
+	apt install -y apt-transport-https ca-certificates curl software-properties-common git hostapd iproute2 iw haveged dnsmasq \
+		iptables procps bash util-linux build-essential python3 python3-pip openssh-server apache2 php libapache2-mod-php \
+		network-manager &&
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - &&
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" &&
 	apt update &&
