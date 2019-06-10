@@ -14,7 +14,7 @@ update_os() {
 }
 
 install_dependencies() {
-	apt install -y apt-transport-https ca-certificates curl software-properties-common git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essential python3 python3-pip &&
+	apt install -y apt-transport-https ca-certificates curl software-properties-common git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essential python3 python3-pip openssh-server &&
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - &&
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" &&
 	apt update &&
@@ -55,7 +55,7 @@ install_portainer() {
 }
 
 install_cockpit() {
-	apt install -y cockpit &&
+	apt install -y cockpit cockpit-docker cockpit-networkmanager &&
 	cp install/cockpit.conf /etc/cockpit/cockpit.conf &&
 	systemctl enable cockpit.socket &&
 	return 0
