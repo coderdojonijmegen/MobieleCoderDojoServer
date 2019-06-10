@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+   gitbucket:
+     build: .
+     volumes:
+       - gitbucket_data:/gitbucket
+     ports:
+       - "8080:8080"
+       - "29418:29418"
+     restart: always
+     environment:
+       GIT_BUCKET_VERSION: 4.31.2
+       PREFIX: git
+
+volumes:
+    gitbucket_data: {}

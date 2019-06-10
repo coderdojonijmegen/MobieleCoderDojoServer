@@ -61,8 +61,15 @@ install_cockpit() {
 }
 
 install_wordpress() {
-	pushd install &&
-		docker-compose -f wordpress.yaml up -d &&
+	pushd install/wordpress &&
+		docker-compose up -d &&
+	popd &&
+	return 0
+}
+
+install_gitbucket() {
+	pushd install/gitbucket &&
+		docker-compose up -d &&
 	popd &&
 	return 0
 }
@@ -83,4 +90,5 @@ configure_apache() {
 #install_portainer &&
 #install_cockpit &&
 install_wordpress &&
+install_gitbucket &&
 configure_apache
