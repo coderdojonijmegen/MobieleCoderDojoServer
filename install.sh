@@ -27,6 +27,7 @@ install_dependencies() {
 
 install_accesspoint() {
 	git clone https://github.com/oblique/create_ap &&
+	cp install/create_ap/create_ap create_ap/create_ap
 	pushd create_ap &&
 		make install &&
 		cp ../install/create_ap.conf /etc/create_ap.conf &&
@@ -44,6 +45,7 @@ configure_firewall() {
 	ufw enable &&
 	ufw allow in on ap0 to any port http &&
 	ufw allow in on ap0 to any port ssh &&
+	ufw allow in on ap0 to any port 53 &&
 	ufw allow in on eno1 to any port ssh &&
 	ufw status verbose &&
 	return 0
