@@ -61,3 +61,4 @@ html_static_path = ['_static']
 
 
 html_show_sphinx = False
+html_baseurl = '/docs/'
