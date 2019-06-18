@@ -62,3 +62,7 @@ html_static_path = ['_static']
 
 html_show_sphinx = False
 html_baseurl = '/docs/'
+
+
+def setup(app):
+    app.add_stylesheet('coderdojo.css')
