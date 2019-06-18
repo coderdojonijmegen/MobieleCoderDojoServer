@@ -5,5 +5,9 @@ Mobiele CoderDojo Server
    :maxdepth: 3
    :caption: Inhoud:
 
+   introductie
+   gebruiksscenarios
+   software
+   hardware
    installatie
    over

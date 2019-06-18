@@ -3,6 +3,7 @@ Installatie
 ###########
 
 De installatie van de MCS is zoveel mogelijk geautomatiseerd. Dit maakt het makkelijk en reproduceerbaar.
+Het script staat in onze `GitHub repository <https://github.com/coderdojonijmegen/MobieleCoderDojoServer>`_.
 
 Basis
 -----

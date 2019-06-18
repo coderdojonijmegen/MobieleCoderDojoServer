@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Over &mdash; Mobiele CoderDojo Server  documentatie</title>
+  <title>Software vereisten &mdash; Mobiele CoderDojo Server  documentatie</title>
   
 
   
@@ -36,7 +36,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Zoeken" href="search.html" />
-    <link rel="prev" title="Installatie" href="installatie.html" /> 
+    <link rel="next" title="Hardware vereisten" href="hardware.html" />
+    <link rel="prev" title="Gebruiksscenario’s" href="gebruiksscenarios.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,14 +85,16 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introductie.html">Introductie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gebruiksscenarios.html">Gebruiksscenario’s</a></li>
-<li class="toctree-l1"><a class="reference internal" href="software.html">Software vereisten</a></li>
-<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware vereisten</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installatie.html">Installatie</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Over</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#initiatief">Initiatief</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#licentie">Licentie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software vereisten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#os">OS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#router">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webserver">Webserver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker">Docker</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware vereisten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installatie.html">Installatie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="over.html">Over</a></li>
 </ul>
 
             
@@ -137,13 +140,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Over</li>
+      <li>Software vereisten</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/over.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/software.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -156,20 +159,42 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="over">
-<h1>Over<a class="headerlink" href="#over" title="Permalink naar deze titel">¶</a></h1>
-<div class="section" id="initiatief">
-<h2>Initiatief<a class="headerlink" href="#initiatief" title="Permalink naar deze titel">¶</a></h2>
-<p>De Mobiele CoderDojo Server is in een initiatief van CoderDojo Nijmegen. Het heeft als doel minder afhankelijk te
-zijn van de, soms niet al te beste, publieke WIFI in de locaties waar de dojo’s worden gehouden.</p>
+  <div class="section" id="software-vereisten">
+<h1>Software vereisten<a class="headerlink" href="#software-vereisten" title="Permalink naar deze titel">¶</a></h1>
+<p>Installatie en configuratie moeten gescript worden en in een Github repository worden beheerd.
+Het is daarmee ook beschikbaar voor andere CoderDojo’s.</p>
+<div class="section" id="os">
+<h2>OS<a class="headerlink" href="#os" title="Permalink naar deze titel">¶</a></h2>
+<ul class="simple">
+<li><p>Ubuntu Server 18.04LTS</p></li>
+<li><p>SSH server</p></li>
+<li><p>WIFI hotspot software</p></li>
+</ul>
 </div>
-<div class="section" id="licentie">
-<h2>Licentie<a class="headerlink" href="#licentie" title="Permalink naar deze titel">¶</a></h2>
-<p>De instructies voor het opzetten van de MCS worden, net als alle andere instructies van CoderDojo Nijmegen,
-aangeboden onder een <a class="reference external" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Licentie</a>.</p>
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-<img  alt="Creative Commons License" style="border-width: 0"
-src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></div>
+<div class="section" id="router">
+<h2>Router<a class="headerlink" href="#router" title="Permalink naar deze titel">¶</a></h2>
+<ul class="simple">
+<li><p>Firewall</p></li>
+<li><p>DHCP server</p></li>
+<li><p>DNS server</p></li>
+</ul>
+</div>
+<div class="section" id="webserver">
+<h2>Webserver<a class="headerlink" href="#webserver" title="Permalink naar deze titel">¶</a></h2>
+<ul class="simple">
+<li><p>Apache</p></li>
+<li><p>WordPress (portaal, installatieprogramma’s)</p></li>
+<li><p>GitBucket git webserver (instructies)</p></li>
+</ul>
+</div>
+<div class="section" id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink naar deze titel">¶</a></h2>
+<ul class="simple">
+<li><p>Docker host</p></li>
+<li><p>Docker registry</p></li>
+<li><p>Portainer (web UI om de images/containers te managen of nieuwe images te maken)</p></li>
+</ul>
+</div>
 </div>
 
 
@@ -180,8 +205,10 @@ src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a></div>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="hardware.html" class="btn btn-neutral float-right" title="Hardware vereisten" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="installatie.html" class="btn btn-neutral float-left" title="Installatie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="gebruiksscenarios.html" class="btn btn-neutral float-left" title="Gebruiksscenario’s" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
