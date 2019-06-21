@@ -34,6 +34,7 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/coderdojo.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Zoeken" href="search.html" />
     <link rel="next" title="Over" href="over.html" />
@@ -205,6 +206,10 @@ sudo make install
 <p>Met <cite>sudo make install</cite> wordt <cite>create_ap</cite> zo geïnstalleerd dat het als service kan draaien. Aangezien het accesspoint actief moet zijn voordat de client aan een (publiek) wifi netwerk wordt gekoppeld,
 is het handig om de service aan te zetten. Met behulp van een configuratiebestand, kan de <cite>create_ap</cite> service worden ingesteld. Deze is na installatie hier te vinden: <cite>/etc/create_ap.conf</cite>.
 We passen de inhoud aan zodat het er als volgt uit ziet:</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>klik om voorbeeld te tonen</p>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>## Standaard instellingen:
 CHANNEL=default
 GATEWAY=10.0.0.1
@@ -229,7 +234,6 @@ NEW_MACADDR=
 DAEMONIZE=0
 NO_HAVEGED=0
 USE_PSK=0
-
 ## Aangepast voor onze CoderDojoServer:
 COUNTRY=NL
 WIFI_IFACE=wlp0s20f3
@@ -237,6 +241,7 @@ INTERNET_IFACE=wlp0s20f3
 SSID=CoderDojoServer
 PASSPHRASE=4Ninjas!
 </pre></div>
+</div>
 </div>
 <p>Na het aanpassen van de configuratie zet je de service aan: <cite>sudo systemctl enable create_ap</cite> en start je het <cite>sudo systemctl start create_ap</cite>. Met behulp van <cite>sudo systemctl status create_ap</cite> kun je zien of de service succesvol is opgestart.</p>
 </div>
@@ -310,7 +315,19 @@ De applicaties die we toelaten zijn:</p>
   
   
     
-   
+  
+ <script type="text/javascript">
+    // https://stackoverflow.com/a/25543713/134731 for toggle example
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
 
 </body>
 </html>

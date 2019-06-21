@@ -50,39 +50,44 @@ Met `sudo make install` wordt `create_ap` zo geïnstalleerd dat het als service 
 is het handig om de service aan te zetten. Met behulp van een configuratiebestand, kan de `create_ap` service worden ingesteld. Deze is na installatie hier te vinden: `/etc/create_ap.conf`. 
 We passen de inhoud aan zodat het er als volgt uit ziet:
 
-.. code-block::
+.. container:: toggle
 
-   ## Standaard instellingen:
-   CHANNEL=default
-   GATEWAY=10.0.0.1
-   WPA_VERSION=2
-   ETC_HOSTS=0
-   DHCP_DNS=gateway
-   NO_DNS=0
-   NO_DNSMASQ=0
-   HIDDEN=0
-   MAC_FILTER=0
-   MAC_FILTER_ACCEPT=/etc/hostapd/hostapd.accept
-   ISOLATE_CLIENTS=0
-   SHARE_METHOD=nat
-   IEEE80211N=0
-   IEEE80211AC=0
-   HT_CAPAB=[HT40+]
-   VHT_CAPAB=
-   DRIVER=nl80211
-   NO_VIRT=0
-   FREQ_BAND=2.4
-   NEW_MACADDR=
-   DAEMONIZE=0
-   NO_HAVEGED=0
-   USE_PSK=0
+   .. container:: header
 
-   ## Aangepast voor onze CoderDojoServer:
-   COUNTRY=NL
-   WIFI_IFACE=wlp0s20f3
-   INTERNET_IFACE=wlp0s20f3
-   SSID=CoderDojoServer
-   PASSPHRASE=4Ninjas!
+      klik om voorbeeld te tonen
+
+   .. code-block::
+
+      ## Standaard instellingen:
+      CHANNEL=default
+      GATEWAY=10.0.0.1
+      WPA_VERSION=2
+      ETC_HOSTS=0
+      DHCP_DNS=gateway
+      NO_DNS=0
+      NO_DNSMASQ=0
+      HIDDEN=0
+      MAC_FILTER=0
+      MAC_FILTER_ACCEPT=/etc/hostapd/hostapd.accept
+      ISOLATE_CLIENTS=0
+      SHARE_METHOD=nat
+      IEEE80211N=0
+      IEEE80211AC=0
+      HT_CAPAB=[HT40+]
+      VHT_CAPAB=
+      DRIVER=nl80211
+      NO_VIRT=0
+      FREQ_BAND=2.4
+      NEW_MACADDR=
+      DAEMONIZE=0
+      NO_HAVEGED=0
+      USE_PSK=0
+      ## Aangepast voor onze CoderDojoServer:
+      COUNTRY=NL
+      WIFI_IFACE=wlp0s20f3
+      INTERNET_IFACE=wlp0s20f3
+      SSID=CoderDojoServer
+      PASSPHRASE=4Ninjas!
 
 
 Na het aanpassen van de configuratie zet je de service aan: `sudo systemctl enable create_ap` en start je het `sudo systemctl start create_ap`. Met behulp van `sudo systemctl status create_ap` kun je zien of de service succesvol is opgestart.
