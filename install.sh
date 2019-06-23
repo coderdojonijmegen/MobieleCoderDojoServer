@@ -79,6 +79,14 @@ install_gitbucket() {
 	return 0
 }
 
+install_management_pages() {
+	cp -r install/docs/ /var/www/ &&
+	cp -r install/mgmnt/ /var/www/ &&
+	# allow the webserver (php script) to manage the wifi connection
+	echo -e "www-data ALL=(ALL:ALL) NOPASSWD: /usr/bin/nmcli" >> /etc/sudoers &&
+	return 0
+}
+
 configure_apache() {
 	cp install/coderdojoserver.conf /etc/apache2/sites-available/coderdojoserver.conf &&
 	a2dissite 000-default.conf &&
