@@ -4,13 +4,14 @@ processActions();
 ?>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<style>
 			body {
 				font-family: sans-serif;
 				background-color: #EEE;
 			}
 			div#container {
-				width: 1000px;
+				max-width: 1000px;
 				margin: auto;
 				background-color: white;
 				padding: 20px;
@@ -20,19 +21,44 @@ processActions();
 			}
 			div#container .title {
 				font-weight: bold;
-				font-size: 32pt;
+				font-size: 3vw;
+			}
+			button {
 			}
 			div#power button {
 				background-color: red;
 				color: white;
 				font-weight: bold;
 			}
+			div#networks {
+				overflow-x:auto;
+			}
 			table {
-				width: 80%;
+				width: 100%;
 				margin: auto;
+				border-collapse: collapse;
+				border-spacing: 0;
+				border: 1px solid #ddd;
 			}
 			th {
 				text-align: left;
+			}
+			tr:nth-child(even) {
+				background-color: #f2f2f2;
+			}
+			input {
+			}
+			@media screen and (max-width: 600px) {
+				body, button, table, input {
+					font-size: 5vw;
+				}
+				button {
+					margin: 1vw;
+					padding: 1vw;
+				}
+				div#container .title {
+					font-size: 10vw;
+				}
 			}
 		</style>
 	</head>
@@ -54,12 +80,14 @@ processActions();
 			<div id="wifi_mgmnt">
 				<h1>Wifi</h1>
 				<a href="/mgmnt/">ververs</a>
-				<table>
-					<thead><tr><th>naam</th><th>signaal</th><th>snelheid</th><th>beveiliging</th><th>actie</th></tr></thead>
-					<tbody>
-					<?php listWifiNetworks(getWifiNetworks()); ?>
-					</tbody>
-				</table>
+				<div id="networks">
+					<table>
+						<thead><tr><th>naam</th><th>signaal</th><th>snelheid</th><th>beveiliging</th><th>actie</th></tr></thead>
+						<tbody>
+						<?php listWifiNetworks(getWifiNetworks()); ?>
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<div id="power">
 				<h1>MCS herstarten of afsluiten</h1>
