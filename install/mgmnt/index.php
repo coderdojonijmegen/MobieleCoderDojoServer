@@ -18,6 +18,15 @@ processActions();
 				text-align: center;
 				box-shadow: 4px 4px 10px 2px #c7c7c7b8;
 			}
+			div#container .title {
+				font-weight: bold;
+				font-size: 32pt;
+			}
+			div#power button {
+				background-color: red;
+				color: white;
+				font-weight: bold;
+			}
 			table {
 				width: 80%;
 				margin: auto;
@@ -29,6 +38,7 @@ processActions();
 	</head>
 	<body>
 		<div id="container">
+			<span class="title">Mobiele CoderDojo Server</span>
 			<div id="doc_mgmnt">
 				<h1>Instructies</h1>
 				<h2>Aanwezig</h2>
@@ -50,6 +60,10 @@ processActions();
 					<?php listWifiNetworks(getWifiNetworks()); ?>
 					</tbody>
 				</table>
+			</div>
+			<div id="power">
+				<h1>MCS herstarten of afsluiten</h1>
+				<button onclick="post('/mgmnt/', { action: 'restart' });">herstarten</button> <button onclick="post('/mgmnt/', { action: 'shutdown' });">afsluiten</button>
 			</div>
 		</div>
 	</body>
@@ -91,6 +105,10 @@ function processActions() {
 			connectToWifiNetwork($network, $password);
 		} else if ($action == "disconnect") {
 			disconnectWifi();
+		} else if ($action == "restart") {
+			restartServer();
+		} else if ($action == "shutdown") {
+			shutdownServer();
 		} else {
 			echo "actie ".$action." is onbekend!";
 		}
@@ -207,7 +225,6 @@ function disconnectWifi() {
 	$results['disconnect wifi'] = $shell->exec("sudo nmcli device disconnect wlp0s20f3");
 
 	printResultsIfError($results);
-
 }
 
 function connectToWifiNetwork($network, $password = false) {
@@ -217,6 +234,24 @@ function connectToWifiNetwork($network, $password = false) {
 	$results['network'] = $network;
 	$results['password'] = $password;
 	$results['connect wifi'] = $shell->exec("sudo nmcli device wifi connect \"".$network."\" ". ($password == false? "": "password \"".$password."\"")." && sleep 10");
+
+	printResultsIfError($results);
+}
+
+function restartServer() {
+	$shell = new Shell();
+
+	$results = array();
+	$results['restart server'] = $shell->exec("sudo reboot now");
+
+	printResultsIfError($results);
+}
+
+function shutdownServer() {
+	$shell = new Shell();
+
+	$results = array();
+	$results['shutdown server'] = $shell->exec("sudo shutdown now");
 
 	printResultsIfError($results);
 }
