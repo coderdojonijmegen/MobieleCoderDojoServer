@@ -5,6 +5,7 @@ processActions();
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="mobile-web-app-capable" content="yes">
 		<style>
 			body {
 				font-family: sans-serif;
