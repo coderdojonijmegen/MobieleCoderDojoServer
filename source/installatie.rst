@@ -27,7 +27,7 @@ Om het tooltje te kunnen gebruiken, moet je de volgende stappen uitvoeren:
 
 .. code-block:: none
 
-   sudo apt install git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essentials
+   sudo apt install git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essential network-manager
    git clone https://github.com/oblique/create_ap
    cd create_ap
    sudo make install
