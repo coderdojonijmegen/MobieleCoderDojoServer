@@ -96,7 +96,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#dagelijks-gebruik">Dagelijks gebruik</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#firewall">Firewall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#firewall">Firewall</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#met-external-access-point">Met external access point</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="over.html">Over</a></li>
@@ -182,7 +185,7 @@ gedeeld worden met het access-point dat op de MCS draait.</p>
 <p>Om dit eenvoudig te kunnen realiseren, kan <a class="reference external" href="https://github.com/oblique/create_ap">create_ap</a> gebruikt worden. Dit tooltje
 configureert de WIFI adapter en de software routering om de client met het accesspoint te verbinden.
 Om het tooltje te kunnen gebruiken, moet je de volgende stappen uitvoeren:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt install git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essentials
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt install git hostapd iproute2 iw haveged dnsmasq iptables procps bash util-linux build-essential network-manager
 git clone https://github.com/oblique/create_ap
 cd create_ap
 sudo make install
@@ -267,6 +270,40 @@ De applicaties die we toelaten zijn:</p>
 </pre></div>
 </div>
 <p>In <cite>sudo nano /etc/default/ufw</cite> <cite>IPV6=yes</cite> vervangen door <cite>IPV6=no</cite>.</p>
+<div class="section" id="met-external-access-point">
+<h3>Met external access point<a class="headerlink" href="#met-external-access-point" title="Permalink naar deze titel">¶</a></h3>
+<p><cite>/etc/netplan/mcs.yaml</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<dl>
+<dt>network:</dt><dd><p>version: 2
+renderer: networkd
+wifis:</p>
+<blockquote>
+<div><dl>
+<dt>wlp0s20f3:</dt><dd><p>dhcp4: yes
+optional: true
+access-points:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“wifi netwerk SSID”:</dt><dd><p>password: “wifi network wachtwoord”</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>ethernets:</dt><dd><dl class="simple">
+<dt>eno1:</dt><dd><p>addresses: [10.0.0.1/24]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 
