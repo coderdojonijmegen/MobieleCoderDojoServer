@@ -114,3 +114,26 @@ Voor de eenvoud en omdat het access point alleen IPv4 ondersteund, blokkeren we 
    53/tcp on ap0              ALLOW IN    Anywhere (interne netwerk aan accesspoint)
 
 In `sudo nano /etc/default/ufw` `IPV6=yes` vervangen door `IPV6=no`.
+
+
+Met external access point
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+`/etc/netplan/mcs.yaml`:
+
+.. code-block::
+   
+network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlp0s20f3:
+      dhcp4: yes
+      optional: true
+      access-points:
+        "wifi netwerk SSID":
+          password: "wifi network wachtwoord"
+  ethernets:
+    eno1:
+      addresses: [10.0.0.1/24]
+
