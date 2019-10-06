@@ -44,6 +44,7 @@ install_router() {
   sed -i -e 's/#net\/ipv4\/ip_forward=1/net\/ipv4\/ip_forward=1/g' /etc/ufw/sysctl.conf &&
   rm /etc/netplan/*yaml && cp install/router/mcs.yaml /etc/netplan/mcs.yaml &&
   cp install/router/rc.local /etc/rc.local && chmod 755 /etc/rc.local &&
+  cp install/router/hosts /etc/hosts &&
   return 0
 }
 
