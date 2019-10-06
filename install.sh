@@ -30,7 +30,7 @@ install_accesspoint() {
 	cp install/create_ap/create_ap create_ap/create_ap
 	pushd create_ap &&
 		make install &&
-		cp ../install/create_ap.conf /etc/create_ap.conf &&
+		cp ../install/create_ap/create_ap.conf /etc/create_ap.conf &&
 		systemctl enable create_ap &&
 		systemctl start create_ap &&
 		sleep 10 &&
