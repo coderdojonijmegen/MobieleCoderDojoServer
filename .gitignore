@@ -1,3 +1,4 @@
 create_ap/
 build/
 *.swp
+/.idea/
