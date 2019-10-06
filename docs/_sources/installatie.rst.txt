@@ -122,18 +122,30 @@ Met external access point
 `/etc/netplan/mcs.yaml`:
 
 .. code-block::
-   
-network:
-  version: 2
-  renderer: networkd
-  wifis:
-    wlp0s20f3:
-      dhcp4: yes
-      optional: true
-      access-points:
-        "wifi netwerk SSID":
-          password: "wifi network wachtwoord"
-  ethernets:
-    eno1:
-      addresses: [10.0.0.1/24]
 
+   network:
+     version: 2
+     renderer: networkd
+     wifis:
+       wlp0s20f3:
+         dhcp4: yes
+         optional: true
+         access-points:
+           "wifi netwerk SSID":
+             password: "wifi network wachtwoord"
+     ethernets:
+       eno1:
+         addresses: [10.0.0.1/24]
+
+WordPress
+---------
+
+Plugins
+^^^^^^^
+
+ 1. Duplicate Post: (https://nl.wordpress.org/plugins/duplicate-post/)
+    aangezien de structuur van onze berichtjes iedere keer zoveel mogelijk gelijk zijn, is het handig om gewoon een
+    vorig bericht te copiëren. Dat kan met deze plugin.
+ 2. Tuxedo Big File Uploads (https://nl.wordpress.org/plugins/tuxedo-big-file-uploads/)
+    standaard is de upload grootte beperkt. Maar, omdat we soms grote installatie bestanden ter beschikking willen
+    stellen, is dit maximum vervelend. Met deze plugin kun je een ander maximum of onbeperkt maximum instellen.

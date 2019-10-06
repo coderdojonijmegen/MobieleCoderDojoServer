@@ -100,6 +100,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#met-external-access-point">Met external access point</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#wordpress">WordPress</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plugins">Plugins</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="over.html">Over</a></li>
@@ -273,36 +277,37 @@ De applicaties die we toelaten zijn:</p>
 <div class="section" id="met-external-access-point">
 <h3>Met external access point<a class="headerlink" href="#met-external-access-point" title="Permalink naar deze titel">¶</a></h3>
 <p><cite>/etc/netplan/mcs.yaml</cite>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">network</span><span class="p">:</span>
+  <span class="n">version</span><span class="p">:</span> <span class="mi">2</span>
+  <span class="n">renderer</span><span class="p">:</span> <span class="n">networkd</span>
+  <span class="n">wifis</span><span class="p">:</span>
+    <span class="n">wlp0s20f3</span><span class="p">:</span>
+      <span class="n">dhcp4</span><span class="p">:</span> <span class="n">yes</span>
+      <span class="n">optional</span><span class="p">:</span> <span class="n">true</span>
+      <span class="n">access</span><span class="o">-</span><span class="n">points</span><span class="p">:</span>
+        <span class="s2">&quot;wifi netwerk SSID&quot;</span><span class="p">:</span>
+          <span class="n">password</span><span class="p">:</span> <span class="s2">&quot;wifi network wachtwoord&quot;</span>
+  <span class="n">ethernets</span><span class="p">:</span>
+    <span class="n">eno1</span><span class="p">:</span>
+      <span class="n">addresses</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.1</span><span class="o">/</span><span class="mi">24</span><span class="p">]</span>
 </pre></div>
 </div>
-<dl>
-<dt>network:</dt><dd><p>version: 2
-renderer: networkd
-wifis:</p>
+</div>
+</div>
+<div class="section" id="wordpress">
+<h2>WordPress<a class="headerlink" href="#wordpress" title="Permalink naar deze titel">¶</a></h2>
+<div class="section" id="plugins">
+<h3>Plugins<a class="headerlink" href="#plugins" title="Permalink naar deze titel">¶</a></h3>
 <blockquote>
-<div><dl>
-<dt>wlp0s20f3:</dt><dd><p>dhcp4: yes
-optional: true
-access-points:</p>
-<blockquote>
-<div><dl class="simple">
-<dt>“wifi netwerk SSID”:</dt><dd><p>password: “wifi network wachtwoord”</p>
-</dd>
-</dl>
+<div><ol class="arabic simple">
+<li><p>Duplicate Post: (<a class="reference external" href="https://nl.wordpress.org/plugins/duplicate-post/">https://nl.wordpress.org/plugins/duplicate-post/</a>)
+aangezien de structuur van onze berichtjes iedere keer zoveel mogelijk gelijk zijn, is het handig om gewoon een
+vorig bericht te copiëren. Dat kan met deze plugin.</p></li>
+<li><p>Tuxedo Big File Uploads (<a class="reference external" href="https://nl.wordpress.org/plugins/tuxedo-big-file-uploads/">https://nl.wordpress.org/plugins/tuxedo-big-file-uploads/</a>)
+standaard is de upload grootte beperkt. Maar, omdat we soms grote installatie bestanden ter beschikking willen
+stellen, is dit maximum vervelend. Met deze plugin kun je een ander maximum of onbeperkt maximum instellen.</p></li>
+</ol>
 </div></blockquote>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="simple">
-<dt>ethernets:</dt><dd><dl class="simple">
-<dt>eno1:</dt><dd><p>addresses: [10.0.0.1/24]</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd>
-</dl>
 </div>
 </div>
 </div>
