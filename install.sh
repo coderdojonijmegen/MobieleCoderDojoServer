@@ -101,6 +101,8 @@ install_gitbucket() {
 install_management_pages() {
 	cp -r install/docs/ /var/www/ &&
 	cp -r install/mgmnt/ /var/www/ &&
+	chown -R www-data:www-data /var/www/docs/ &&
+  chown -R www-data:www-data /var/www/mgmnt/ &&
 	# allow the webserver (php script) to manage the wifi connection
 	echo -e "www-data ALL=(ALL:ALL) NOPASSWD: /usr/bin/nmcli, /sbin/shutdown, /sbin/reboot" >> /etc/sudoers &&
 	return 0
