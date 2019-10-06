@@ -104,5 +104,6 @@ install_cockpit &&
 install_portainer &&
 install_wordpress &&
 install_gitbucket &&
+install_management_pages &&
 configure_apache &&
 echo -e "\n\n====================\nKlaar! Zie https://github.com/coderdojonijmegen/MobieleCoderDojoServer voor instructies om Portainer, WordPress en GitBucket te configureren.\n====================\n\n"
