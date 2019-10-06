@@ -14,9 +14,8 @@ update_os() {
 }
 
 install_dependencies() {
-	apt install -y apt-transport-https ca-certificates curl software-properties-common git hostapd iproute2 iw haveged dnsmasq \
-		iptables procps bash util-linux build-essential python3 python3-pip openssh-server apache2 php libapache2-mod-php \
-		network-manager wireless-tools &&
+	apt install -y apt-transport-https ca-certificates curl software-properties-common git dnsmasq \
+		bash build-essential python3 python3-pip openssh-server apache2 php libapache2-mod-php &&
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - &&
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" &&
 	apt update &&
@@ -38,6 +37,14 @@ install_accesspoint() {
 	popd &&
 	rm -rf create_ap/ &&
 	return 0
+}
+
+install_router() {
+  apt install -y iproute2	iptables iw procps util-linux network-manager &&
+  sed -i -e 's/#net\/ipv4\/ip_forward=1/net\/ipv4\/ip_forward=1/g' /etc/ufw/sysctl.conf &&
+  rm /etc/netplan/*yaml && cp install/router/mcs.yaml /etc/netplan/mcs.yaml &&
+  cp install/router/rc.local /etc/rc.local && chmod 755 /etc/rc.local &&
+  return 0
 }
 
 configure_firewall() {
@@ -98,8 +105,9 @@ configure_apache() {
 
 update_os &&
 install_dependencies &&
+#install_accesspoint &&
+install_router &&
 configure_firewall &&
-install_accesspoint &&
 install_cockpit &&
 install_portainer &&
 install_wordpress &&
