@@ -65,7 +65,7 @@ configure_firewall_router() {
   ufw allow in on eno1 to any port 53 && # DNS
   ufw allow in on eno1 to any port http &&
   ufw allow in on eno1 to any port ssh &&
-  ufw allow in on wlp0s20f3 to any port http &&
+  ufw allow in on wlp0s20f3 to any port ssh && # alleen SSH van WAN, gebruik SSH tunnel om vanaf WAN het LAN te bereiken
   return 0
 }
 
