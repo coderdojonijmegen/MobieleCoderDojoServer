@@ -47,7 +47,7 @@ install_router() {
   return 0
 }
 
-configure_firewall() {
+configure_firewall_ap() {
 	ufw --force reset &&
 	ufw enable &&
 	ufw allow in on ap0 to any port http &&
@@ -56,6 +56,17 @@ configure_firewall() {
 	ufw allow in on eno1 to any port ssh &&
 	ufw status verbose &&
 	return 0
+}
+
+configure_firewall_router() {
+  ufw --force reset &&
+  ufw enable &&
+  ufw allow in on eno1 to any port 67 && # DHCP
+  ufw allow in on eno1 to any port 53 && # DNS
+  ufw allow in on eno1 to any port http &&
+  ufw allow in on eno1 to any port ssh &&
+  ufw allow in on wlp0s20f3 to any port http &&
+  return 0
 }
 
 install_portainer() {
@@ -107,7 +118,7 @@ update_os &&
 install_dependencies &&
 #install_accesspoint &&
 install_router &&
-configure_firewall &&
+configure_firewall_router &&
 install_cockpit &&
 install_portainer &&
 install_wordpress &&
