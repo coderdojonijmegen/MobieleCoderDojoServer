@@ -120,6 +120,7 @@ configure_apache() {
 update_os &&
 install_dependencies &&
 #install_accesspoint &&
+#configure_firewall_ap &&
 install_router &&
 configure_firewall_router &&
 install_cockpit &&

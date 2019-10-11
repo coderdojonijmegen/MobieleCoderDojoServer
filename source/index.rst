@@ -10,4 +10,5 @@ Mobiele CoderDojo Server
    software
    hardware
    installatie
+   gebruik
    over

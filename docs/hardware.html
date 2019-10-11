@@ -87,7 +87,10 @@
 <li class="toctree-l1"><a class="reference internal" href="introductie.html">Introductie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gebruiksscenarios.html">Gebruiksscenario’s</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software.html">Software vereisten</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware vereisten</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware vereisten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#update-oktober-2019">Update oktober 2019</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="installatie.html">Installatie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="over.html">Over</a></li>
 </ul>
@@ -188,6 +191,17 @@
 </tr>
 </tbody>
 </table>
+<div class="section" id="update-oktober-2019">
+<h2>Update oktober 2019<a class="headerlink" href="#update-oktober-2019" title="Permalink naar deze titel">¶</a></h2>
+<p>Het originele plan was om alleen de NUC te gebruiken, zowel als WIFI client en access-point. Dit werkt ook mooi, maar
+helaas tot zo’n 4 verbonden computers. Daarboven crashed de WIFI driver en moet de machine herstart worden om weer
+te laten werken. Uiteraard is dit veel te weinig voor een CoderDojo en daarmee niet werkbaar.</p>
+<p>Vandaar dat we ervoor hebben gekozen om een oude router te pakken en deze in bridge-mode te zetten. Hierdoor werkt deze
+als access-point en hoeft de NUC alleen als router te werken. Helaas hiermee wel wat minder draagbaar, maar nog altijd
+goed bruikbaar.</p>
+<p>Het installatiescript bevat de functionaliteit voor stand-alone gebruik van de NUC nog altijd, maar is aangepast voor
+gebruik met de externe access-point.</p>
+</div>
 </div>
 
 

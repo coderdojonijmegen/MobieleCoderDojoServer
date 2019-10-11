@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installatie &mdash; Mobiele CoderDojo Server  documentatie</title>
+  <title>Gebruik &mdash; Mobiele CoderDojo Server  documentatie</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="_static/coderdojo.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Zoeken" href="search.html" />
-    <link rel="next" title="Gebruik" href="gebruik.html" />
-    <link rel="prev" title="Hardware vereisten" href="hardware.html" /> 
+    <link rel="next" title="Over" href="over.html" />
+    <link rel="prev" title="Installatie" href="installatie.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -88,14 +88,8 @@
 <li class="toctree-l1"><a class="reference internal" href="gebruiksscenarios.html">Gebruiksscenario’s</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software.html">Software vereisten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware vereisten</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installatie</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#wordpress">WordPress</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#plugins">Plugins</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="gebruik.html">Gebruik</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installatie.html">Installatie</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gebruik</a></li>
 <li class="toctree-l1"><a class="reference internal" href="over.html">Over</a></li>
 </ul>
 
@@ -142,13 +136,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Installatie</li>
+      <li>Gebruik</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/installatie.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/gebruik.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -161,68 +155,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installatie">
-<h1>Installatie<a class="headerlink" href="#installatie" title="Permalink naar deze titel">¶</a></h1>
-<p>Bibliotheken hebben meestal publiek WIFI. Een netwerk aansluiting is zeldzamer.
-Om de Ninja’s zowel gebruik te kunnen laten maken van de MCS en het publieke internet,
-moet de MCS verbonden worden met de publieke WIFI van de bibliotheek. Vervolgens moet deze internetverbinding
-gedeeld worden met het access-point dat aan de MCS is verbonden of er op draait.</p>
-<p>Om de installatie zo makkelijk mogelijk te maken, is het meeste werk geautomatiseerd in een script. Volg daarvoor de
-volgende stappen:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Verbind de machine aan het netwerk met een netwerk kabel</p></li>
-<li><p>Installeer Ubuntu Server (18.04LTS op het moment van schrijven)</p></li>
-<li><p>Voer vervolgens de volgende instructies uit:</p></li>
-</ol>
-</div></blockquote>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/coderdojonijmegen/MobieleCoderDojoServer.git
-cd MobieleCoderDojoServer/
-sudo ./install.sh
-</pre></div>
-</div>
-<p>Als het script succesvol is uitgevoerd, volgt de melding dat installatie klaar is.</p>
-<blockquote>
-<div><ol class="arabic simple" start="4">
-<li><p>Verwijder dan de netwerk kabel van de machine. Dit is nodig, omdat de geïnstalleerd DHCP server anders
-conflicteert met de DHCP server in je thuis router.</p></li>
-<li><p>Herstart de computer dan met commando:</p></li>
-</ol>
-</div></blockquote>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo restart now
-</pre></div>
-</div>
-<p>Nadat de machine opnieuw is opgestart kun je er verbinding mee maken door:</p>
-<blockquote>
-<div><ol class="arabic simple" start="6">
-<li><p>a Verbind de WAN/internet poort van de gebridgde router aan de netwerk aansluiting van de MCS en verbind vervolgens
-je laptop met het WIFI netwerk van de gebridgde router.</p></li>
-</ol>
-</div></blockquote>
-<p>Of:</p>
-<blockquote>
-<div><ol class="arabic simple" start="6">
-<li><p>b Verbind je laptop en de MCS direct met elkaar via een netwerk kabel.</p></li>
-</ol>
-</div></blockquote>
-<p>In beide situaties krijgt je laptop een IP adres van de MCS in het adresbereik van 10.0.0.2 tot en met 10.0.0.200. De MCS
-is vervolgens bereikbaar op <a class="reference external" href="http://cocderdojo.server">http://cocderdojo.server</a> of <a class="reference external" href="http://mcs">http://mcs</a>.</p>
-<div class="section" id="wordpress">
-<h2>WordPress<a class="headerlink" href="#wordpress" title="Permalink naar deze titel">¶</a></h2>
-<div class="section" id="plugins">
-<h3>Plugins<a class="headerlink" href="#plugins" title="Permalink naar deze titel">¶</a></h3>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Duplicate Post: (<a class="reference external" href="https://nl.wordpress.org/plugins/duplicate-post/">https://nl.wordpress.org/plugins/duplicate-post/</a>)
-aangezien de structuur van onze berichtjes iedere keer zoveel mogelijk gelijk zijn, is het handig om gewoon een
-vorig bericht te copiëren. Dat kan met deze plugin.</p></li>
-<li><p>Tuxedo Big File Uploads (<a class="reference external" href="https://nl.wordpress.org/plugins/tuxedo-big-file-uploads/">https://nl.wordpress.org/plugins/tuxedo-big-file-uploads/</a>)
-standaard is de upload grootte beperkt. Maar, omdat we soms grote installatie bestanden ter beschikking willen
-stellen, is dit maximum vervelend. Met deze plugin kun je een ander maximum of onbeperkt maximum instellen.</p></li>
-</ol>
-</div></blockquote>
-</div>
-</div>
+  <div class="section" id="gebruik">
+<h1>Gebruik<a class="headerlink" href="#gebruik" title="Permalink naar deze titel">¶</a></h1>
 </div>
 
 
@@ -233,10 +167,10 @@ stellen, is dit maximum vervelend. Met deze plugin kun je een ander maximum of o
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="gebruik.html" class="btn btn-neutral float-right" title="Gebruik" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="over.html" class="btn btn-neutral float-right" title="Over" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="hardware.html" class="btn btn-neutral float-left" title="Hardware vereisten" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="installatie.html" class="btn btn-neutral float-left" title="Installatie" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
