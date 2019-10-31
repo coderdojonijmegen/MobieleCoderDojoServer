@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 if [[ $UID != 0 ]]; then
-    echo "Please run this script with sudo:"
-    echo "sudo $0 $*"
-    exit 1
+	echo "Please run this script with sudo:"
+	echo "sudo $0 $*"
+	exit 1
 fi
 
 update_os() {
@@ -21,6 +21,9 @@ install_dependencies() {
 	apt update &&
 	apt install -y docker-ce &&
 	pip3 install docker-compose &&
+	mkdir -p /etc/systemd/system/docker.service.d/ &&
+	cp install/docker-tcp-access.conf /etc/systemd/system/docker.service.d/override.conf &&
+	systemctl restart docker.service &&
 	return 0
 }
 
@@ -40,12 +43,13 @@ install_accesspoint() {
 }
 
 install_router() {
-  apt install -y iproute2	iptables iw procps util-linux network-manager &&
-  sed -i -e 's/#net\/ipv4\/ip_forward=1/net\/ipv4\/ip_forward=1/g' /etc/ufw/sysctl.conf &&
-  rm /etc/netplan/*yaml && cp install/router/mcs.yaml /etc/netplan/mcs.yaml &&
-  cp install/router/rc.local /etc/rc.local && chmod 755 /etc/rc.local &&
-  cp install/router/hosts /etc/hosts &&
-  return 0
+	apt install -y iproute2 iptables iw procps util-linux network-manager &&
+	sed -i -e 's/#net\/ipv4\/ip_forward=1/net\/ipv4\/ip_forward=1/g' /etc/ufw/sysctl.conf &&
+	rm /etc/netplan/*yaml && cp install/router/mcs.yaml /etc/netplan/mcs.yaml &&
+	cp install/router/rc.local /etc/rc.local && chmod 755 /etc/rc.local &&
+	cp install/router/hosts /etc/hosts &&
+	cp install/router/dnsmasq.conf /etc/dnsmasq.conf &&
+	return 0
 }
 
 configure_firewall_ap() {
@@ -60,14 +64,14 @@ configure_firewall_ap() {
 }
 
 configure_firewall_router() {
-  ufw --force reset &&
-  ufw enable &&
-  ufw allow in on eno1 to any port 67 && # DHCP
-  ufw allow in on eno1 to any port 53 && # DNS
-  ufw allow in on eno1 to any port http &&
-  ufw allow in on eno1 to any port ssh &&
-  ufw allow in on wlp0s20f3 to any port ssh && # alleen SSH van WAN, gebruik SSH tunnel om vanaf WAN het LAN te bereiken
-  return 0
+	ufw --force reset &&
+	ufw enable &&
+	ufw allow in on eno1 to any port 67 && # DHCP
+	ufw allow in on eno1 to any port 53 && # DNS
+	ufw allow in on eno1 to any port http &&
+	ufw allow in on eno1 to any port ssh &&
+	ufw allow in on wlp0s20f3 to any port ssh && # alleen SSH van WAN, gebruik SSH tunnel om vanaf WAN het LAN te bereiken
+	return 0
 }
 
 install_portainer() {
@@ -120,7 +124,6 @@ configure_apache() {
 update_os &&
 install_dependencies &&
 #install_accesspoint &&
-#configure_firewall_ap &&
 install_router &&
 configure_firewall_router &&
 install_cockpit &&
