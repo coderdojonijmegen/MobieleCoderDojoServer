@@ -108,7 +108,7 @@ install_management_pages() {
 	chown -R www-data:www-data /var/www/docs/ &&
   chown -R www-data:www-data /var/www/mgmnt/ &&
 	# allow the webserver (php script) to manage the wifi connection
-	echo -e "www-data ALL=(ALL:ALL) NOPASSWD: /usr/bin/nmcli, /sbin/shutdown, /sbin/reboot" >> /etc/sudoers &&
+	echo -e "www-data ALL=(ALL:ALL) NOPASSWD: /usr/bin/nmcli, /sbin/shutdown, /sbin/reboot, /bin/cp, /bin/systemctl" >> /etc/sudoers &&
 	return 0
 }
 
