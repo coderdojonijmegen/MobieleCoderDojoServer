@@ -132,6 +132,7 @@ function processActions() {
 			$network = trim($_POST["network"]);
                         $password = empty($_POST["password"])? false: $_POST["password"];
 			connectToWifiNetwork($network, $password);
+			updateDnsServers();
 		} else if ($action == "disconnect") {
 			disconnectWifi();
 		} else if ($action == "restart") {
@@ -148,7 +149,7 @@ function listDocDirs($docDirs) {
 	foreach($docDirs as $key => $value) {
 		echo "<tr><td><a href=\"/docs/".$value."\">".$value
 			."</a></td><td><button onclick=\"post('/mgmnt/', { action: 'refresh', repo: '".trim($value)."' });\">werk bij</button> "
-			."<button onclick=\"post('/mgmnt/', { action: 'delete', repo: '".$value."' });\">verwijder</button></td></tr>";
+			."<button onclick=\"post('/mgmnt/', { action: 'delete', repo: '".$value."' });\">verwijder</button></td></tr>\n";
 	}
 }
 
@@ -176,16 +177,14 @@ function deleteDocs($repoName) {
 }
 
 function printResultsIfError($results) {
-	$hasErrorOccurred = false;
+	$hasErrorOccurred = true;
 	foreach($results as $key => $result) {
 		if (is_array($result) && $result['returnCode'] !== 0) {
 			$hasErrorOccurred = true;
 		}
 	}
 	if ($hasErrorOccurred) {
-		echo "<pre>";
 		print_r($results);
-		echo "</pre>";
 	}
 }
 
@@ -207,12 +206,9 @@ function getWifiNetworks() {
 	$networks = array();
 	$result = $shell->exec("nmcli device wifi");
 	if ($result['errorCode'] === false) {
-		echo "<pre>";
 		print_r($result);
-		echo "</pre>";
 		return;
 	} else {
-		echo "<pre>";
 		foreach($result['output'] as $key => $network) {
 			$re = '/(\*){0,1}[ ]+([\w -\/]+)[ ]{2,}Infra[ ]*([\d]+)[ ]*([\d]+ Mbit\/s)+[ ]*([\d]+)[^WPAE128-]+([WEPA1280.X -]+)/';
 			preg_match_all($re, $network, $matches, PREG_SET_ORDER, 0);
@@ -232,17 +228,19 @@ function getWifiNetworks() {
 }
 
 function listWifiNetworks($networks) {
+        $networkIdx = 0;
 	foreach($networks as $key => $network) {
 		echo "<tr><td>".$network['name']."</td><td>".$network['signalStrength']."</td><td>".$network['bandwidth']."</td><td>".$network['security']."</td><td>";
 		if ($network['isConnected']) {
 			echo "<button onclick=\"post('/mgmnt/', { action: 'disconnect', network: '".$network['name']."' });\">verbreek verbinding</button>";
 		} else if (!$network['isConnected']) {
-			echo "<button onclick=\"post('/mgmnt/', { action: 'connect', network: '".$network['name']."', password: document.getElementById('network_password').value });\">verbind</button>";
+			echo "<button onclick=\"post('/mgmnt/', { action: 'connect', network: '".$network['name']."'".(!empty($network['security'])? ", password: document.getElementById('network_password".$networkIdx."').value" : "")." });\">verbind</button>";
 			if (!empty($network['security'])) {
-				echo " <input type=\"text\" id=\"network_password\" placeholder=\"netwerk wachtwoord\" />";
+				echo " <input type=\"text\" id=\"network_password".$networkIdx."\" placeholder=\"netwerk wachtwoord\" />";
 			}
 		}
-		echo "</td></tr>";
+		echo "</td></tr>\n";
+                $networkIdx++;
 	}
 }
 
@@ -261,9 +259,40 @@ function connectToWifiNetwork($network, $password = false) {
 
 	$results = array();
 	$results['network'] = $network;
-	$results['password'] = $password;
-	$results['connect wifi'] = $shell->exec("sudo nmcli device wifi connect \"".$network."\" ". ($password == false? "": "password \"".$password."\"")." && sleep 10");
+	$results['password'] = $password; //sudo nmcli device wifi connect "Gravekamp Wireless" password "Teun is geboren op 22 januari 2006."
+	$results['connect wifi'] = $shell->exec("sudo nmcli device wifi connect \"".$network."\" ". ($password == false? "": "password \"".$password."\""));
 
+	printResultsIfError($results);
+}
+
+function updateDnsServers() {
+	$shell = new Shell();
+
+	$results = array();
+	$results['assigned DNS server(s)'] = $shell->exec("sudo nmcli device show wlp0s20f3 | grep DNS");
+	$dnsServers = implode(' ', $results['assigned DNS server(s)']['output']);
+	$re = '/(\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3})/m';
+	preg_match_all($re, $dnsServers, $matches, PREG_SET_ORDER, 0);
+
+	$dnsAddresses = array();
+	foreach ($matches as $value) {
+		$dnsAddresses[] = $value[0];
+	}
+
+	$dnsMasqConf = file("/etc/dnsmasq.conf", FILE_IGNORE_NEW_LINES);
+	$updatedDnsMasqConf = "";
+	foreach ($dnsMasqConf as $line) {
+		if (substr_count($line, 'server=') == 0) {
+			$updatedDnsMasqConf .= $line."\n";
+		}
+	}
+	foreach ($dnsAddresses as $address) {
+		$updatedDnsMasqConf .= "server=".$address."\n";
+	}
+	file_put_contents("updatedDnsMasq.conf", $updatedDnsMasqConf);
+	$results['updated dnsmasq.conf'] = $updatedDnsMasqConf;
+	$results['replace /etc/dnsmasq.conf'] = $shell->exec("sudo cp updatedDnsMasq.conf /etc/dnsmasq.conf");
+	$results['restart dnsmasq.service'] = $shell->exec("sudo systemctl restart dnsmasq.service");
 	printResultsIfError($results);
 }
 
