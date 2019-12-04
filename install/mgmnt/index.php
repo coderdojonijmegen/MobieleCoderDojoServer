@@ -161,7 +161,12 @@ function updateDocs($repoName) {
 	$results['delete .htmp/'] = $shell->exec("rm -rf .htmp/");
 	$results['clone repo'] = $shell->exec("git clone https://github.com/coderdojonijmegen/".$repoName.".git ".dirname(__FILE__)."/.htmp/");
 	$results['delete old docs'] = $shell->exec("rm -rf ../docs/".$repoName."/");
-	$results['publish new docs'] = $shell->exec("cp -r .htmp/docs/ ../docs/".$repoName."/");
+        if (realpath(".htmp/docs/" !== false)) {
+                $results['publish new docs'] = $shell->exec("cp -r .htmp/docs/ ../docs/".$repoName."/");
+        } else {
+                $results['checkout  gh-pages'] = $shell->exec("cd .htmp/ && git checkout gh-pages");
+                $results['publish new docs'] = $shell->exec("cp -r .htmp/ ../docs/".$repoName."/");
+        }
 
 	printResultsIfError($results);
 }
